@@ -1,0 +1,23 @@
+﻿
+@model List<User>
+
+
+@{
+    ViewData["Title"] = "User Page";
+}
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div>
+        @foreach(User u in Model)
+        {
+            <div>@u.UserName
+                <a >link</a>
+            </div>
+        }
+    </div>
+
+</body>
+</html>

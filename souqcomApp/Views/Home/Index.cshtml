@@ -1,0 +1,23 @@
+﻿
+@model List<Category>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div>
+        @foreach(Category cat in Model)
+        {
+            <div>@cat.CategoryName
+                <a >link</a>
+            </div>
+        }
+    </div>
+
+</body>
+</html>
