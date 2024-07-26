@@ -15,5 +15,4 @@ namespace admin.login
         public string ErrorMsg {get; set;} = "";
 
     }   
-        
 }
