@@ -28,24 +28,46 @@ public class AdminController : Controller
         return View("Index",adminInfo);
     }
 
-    public ActionResult Create()
+    public ActionResult GetCategories()
     {
-        return View();
+        return View("CategoryDashboard", new CategoryServices().GetList());
+    }
+
+    public ActionResult CreateCategory()
+    {
+        return View(new CategoryModel());
     }
 
     [HttpPost]
-    public ActionResult Create(CategoryModel CategoryInfo)
+    public ActionResult CreateCategory(CategoryModel CategoryInfo)
     {
         CategoryServices CategoryServ = new CategoryServices();
         bool status = CategoryServ.Create(CategoryInfo.Name, CategoryInfo.Description);
         if(status == true)
         {
             //Go to the Dashboard page
-            return View("Index", "category");
+            return View("CategoryDashboard", CategoryServ.GetList());
         }
-        // adminInfo.ErrorMsg = "error ";
+        CategoryInfo.ErrorMsg = "Duplicate Category";
         //Go to Create page
-        return View("Create", CategoryInfo);
+        return View("CreateCategory", CategoryInfo);
+    }
+
+    public ActionResult EditCategory()
+    {
+        return View("EditCategory", new CategoryModel());
+    }
+
+    [HttpPost]
+    public ActionResult EditCategory(CategoryModel CategoryInfo)
+    {
+        CategoryServices CategoryServ = new CategoryServices();
+        bool status = CategoryServ.Edit(CategoryInfo);
+        if(status == true)
+        {
+            CategoryInfo.ErrorMsg = "Successful editing.";
+        }
+        return View("EditCategory", CategoryInfo);
     }
 
 

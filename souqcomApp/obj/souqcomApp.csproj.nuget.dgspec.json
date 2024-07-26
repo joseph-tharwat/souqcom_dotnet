@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/workspaces/souqcom_dotnet/souqcomApp/souqcomApp.csproj": {}
+    "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\souqcomApp.csproj": {}
   },
   "projects": {
-    "/workspaces/souqcom_dotnet/souqcomApp/souqcomApp.csproj": {
+    "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\souqcomApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/workspaces/souqcom_dotnet/souqcomApp/souqcomApp.csproj",
+        "projectUniqueName": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\souqcomApp.csproj",
         "projectName": "souqcomApp",
-        "projectPath": "/workspaces/souqcom_dotnet/souqcomApp/souqcomApp.csproj",
-        "packagesPath": "/home/codespace/.nuget/packages/",
-        "outputPath": "/workspaces/souqcom_dotnet/souqcomApp/obj/",
+        "projectPath": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\souqcomApp.csproj",
+        "packagesPath": "C:\\Users\\jotha\\.nuget\\packages\\",
+        "outputPath": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/codespace/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\jotha\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

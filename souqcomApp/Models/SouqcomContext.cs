@@ -47,7 +47,7 @@ public partial class SouqcomContext : DbContext
         });
 
         modelBuilder.Entity<Cart>(entity =>
-        {   
+        {
             entity.ToTable("cart");
 
             entity.Property(e => e.CartId)

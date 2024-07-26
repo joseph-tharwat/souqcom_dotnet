@@ -1,0 +1,20 @@
+﻿@model List<Category>
+
+
+@{
+    ViewData["Title"] = "dashboard Page";
+}
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div>
+        @foreach(var cat in Model)
+        {
+            <div>@cat.CategoryName</div>
+            <div>@cat.CategoryDescription</div>
+        }
+    </div>
+</body>
+</html>
