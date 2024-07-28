@@ -8,13 +8,24 @@
 
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css">
 <body>
     <div>
+        <table>
+            
+        
         @foreach(var cat in Model)
         {
-            <div>@cat.CategoryName</div>
-            <div>@cat.CategoryDescription</div>
+            <tr>
+                <th>@cat.CategoryName</th>
+                <th>@cat.CategoryDescription</th>
+                <th> <img src ="@Url.Content("~/CategoryPhotos/" + cat.CategoryPhoto + ".png")"> </th>
+
+                <th>@Html.ActionLink("Delete", "DeleteCategory", new{CatName = cat.CategoryName})</th>
+                <th>@Html.ActionLink("Edit", "EditCategory", new{CatName = cat.CategoryName})</th>
+            </tr>
         }
+        </table>
     </div>
 </body>
 </html>

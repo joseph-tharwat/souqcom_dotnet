@@ -11,8 +11,5 @@ namespace admin.login
         
         [Required]
         public string Password {get; set;} = "password";
-
-        public string ErrorMsg {get; set;} = "";
-
     }   
 }

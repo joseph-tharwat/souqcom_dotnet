@@ -9,6 +9,16 @@ namespace souqcomApp.Controllers;
 
 public class AdminController : Controller
 {
+    private static CategoryServices CategoryServ = null;
+    static AdminController()
+    {
+        if(CategoryServ == null)
+        {
+            CategoryServ = new CategoryServices();
+        }
+    }
+
+    //login page
     public IActionResult Index()
     {
         AdminLogin temp =new AdminLogin();
@@ -24,11 +34,11 @@ public class AdminController : Controller
         {
             return View("Dashboard");
         }
-        adminInfo.ErrorMsg = "error username or password";
+        ViewBag.Msg = "error in username or password";
         return View("Index",adminInfo);
     }
 
-    public ActionResult GetCategories()
+    public ActionResult CategoryDashboard()
     {
         return View("CategoryDashboard", new CategoryServices().GetList());
     }
@@ -41,33 +51,62 @@ public class AdminController : Controller
     [HttpPost]
     public ActionResult CreateCategory(CategoryModel CategoryInfo)
     {
-        CategoryServices CategoryServ = new CategoryServices();
-        bool status = CategoryServ.Create(CategoryInfo.Name, CategoryInfo.Description);
+        bool status = CategoryServ.Create(CategoryInfo.Name, CategoryInfo.Description, CategoryInfo.PhotoFile);
         if(status == true)
         {
             //Go to the Dashboard page
-            return View("CategoryDashboard", CategoryServ.GetList());
+            return RedirectToAction("CategoryDashboard");
         }
-        CategoryInfo.ErrorMsg = "Duplicate Category";
+        ViewBag.Msg = "Duplicate Category";
         //Go to Create page
         return View("CreateCategory", CategoryInfo);
     }
 
-    public ActionResult EditCategory()
+    public ActionResult EditCategory(string catName)
     {
-        return View("EditCategory", new CategoryModel());
+        Category CatToEdit = CategoryServ.FindCategory(catName);
+
+        CategoryModel Cat = new CategoryModel();
+        Cat.Name = CatToEdit.CategoryName;
+        Cat.Description = CatToEdit.CategoryDescription;
+        Cat.Photo = CatToEdit.CategoryPhoto;
+
+        return View("EditCategory", Cat);
     }
 
     [HttpPost]
     public ActionResult EditCategory(CategoryModel CategoryInfo)
     {
-        CategoryServices CategoryServ = new CategoryServices();
         bool status = CategoryServ.Edit(CategoryInfo);
+        if(status == false)
+        {
+            ViewBag.Msg = "Category not Found";
+            return View("EditCategory", CategoryInfo);
+        }
+        return RedirectToAction("CategoryDashboard", "Admin");
+    }
+
+    //This can be deleteConfirmed and the next one to be HttpPost to delete
+    // public ActionResult Delete()
+    // {
+    //     //Go to the Dashboard page
+    //     return View("DeleteConformation", CatName);
+    // }
+
+    public ActionResult DeleteCategory(string CatName)
+    {
+        CategoryModel CategoryInfo = new CategoryModel();
+        CategoryInfo.Name = CatName;
+        bool status = CategoryServ.Delete(CategoryInfo);
         if(status == true)
         {
-            CategoryInfo.ErrorMsg = "Successful editing.";
+            ViewBag.Msg = "Successful Deleting.";
         }
-        return View("EditCategory", CategoryInfo);
+        else 
+        {
+            ViewBag.Msg = "Can not delete.";   
+        }
+        return RedirectToAction("CategoryDashboard");
     }
 
 

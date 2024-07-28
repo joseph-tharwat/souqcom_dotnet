@@ -13,6 +13,7 @@
         @using(Html.BeginForm("Login","Admin", FormMethod.Post))
         {
             @Html.ValidationSummary()
+            
             <div class="form-group">
                 <label>username</label>
                 @Html.TextBoxFor(admin=>admin.UserName, new { @class="form-control", Placeholder=@Model.UserName})
@@ -22,10 +23,11 @@
                 @Html.PasswordFor(admin=>admin.Password, new { @class="form-control", Placeholder=@Model.Password})
             </div>
             
-            @if(Model.ErrorMsg != "")
+            @* @if(Model.ErrorMsg != "")
             {
                 <div>@Model.ErrorMsg</div>
-            }
+            } *@
+            <div>@ViewBag.Msg</div>
             
             <button type="submit" class="btn-primary">login</button>
         }

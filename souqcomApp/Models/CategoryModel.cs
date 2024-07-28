@@ -11,7 +11,8 @@ namespace category.modification
          
         public string Description {get; set;} = ""; 
         
-        public string ErrorMsg {get; set;} = "";
+        public string Photo  {get; set;} = ""; 
 
+        public IFormFile PhotoFile {get; set;} = null;
     }   
 }

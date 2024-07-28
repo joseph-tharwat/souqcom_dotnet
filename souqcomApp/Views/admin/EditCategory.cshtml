@@ -10,9 +10,10 @@
 <html>
 <body>
     <div>
-        @using(Html.BeginForm("EditCategory","Admin", FormMethod.Post))
+        @using(Html.BeginForm("EditCategory","Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
         {
             @Html.ValidationSummary()
+            
             <div class="form-group">
                 <label>Name</label>
                 @Html.TextBoxFor(cat=>cat.Name , new { @class="form-control", Placeholder=@Model.Name})
@@ -22,12 +23,14 @@
                 @Html.TextBoxFor(admin=>admin.Description, new { @class="form-control", Placeholder=@Model.Description})
             </div>
             
-            @if(Model.ErrorMsg != "")
-            {
-                <div>@Model.ErrorMsg</div>
-            }
+            <div>
+                <img src ="@Url.Content("~/CategoryPhotos/" + Model.Photo + ".png")">
+                <input type="file"  name="PhotoFile" />
+            </div>
             
-            <button type="submit" class="btn-primary">Create</button>
+            <div>@ViewBag.Msg</div>
+            
+            <button type="submit" class="btn-primary">Edit</button>
         }
     </div>
 

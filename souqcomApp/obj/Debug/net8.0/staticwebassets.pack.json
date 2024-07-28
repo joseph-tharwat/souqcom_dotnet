@@ -5,6 +5,38 @@
       "PackagePath": "staticwebassets\\souqcomApp.bundle.scp.css"
     },
     {
+      "Id": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\014bdb16-7ba7-467d-908e-2bee5f78ef7c.png",
+      "PackagePath": "staticwebassets\\CategoryPhotos\\014bdb16-7ba7-467d-908e-2bee5f78ef7c.png"
+    },
+    {
+      "Id": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\4f05f9d3-1bc7-4048-995f-dc49a744ea90.png",
+      "PackagePath": "staticwebassets\\CategoryPhotos\\4f05f9d3-1bc7-4048-995f-dc49a744ea90.png"
+    },
+    {
+      "Id": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\6eb741f3-675c-4b38-a2ee-68628b347faa.png",
+      "PackagePath": "staticwebassets\\CategoryPhotos\\6eb741f3-675c-4b38-a2ee-68628b347faa.png"
+    },
+    {
+      "Id": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\78b9f787-ec6d-4bd1-91f9-ab9b5cfc5b8e.png",
+      "PackagePath": "staticwebassets\\CategoryPhotos\\78b9f787-ec6d-4bd1-91f9-ab9b5cfc5b8e.png"
+    },
+    {
+      "Id": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\a1f85ee1-995b-4ff5-9c61-a9e290d5392e.png",
+      "PackagePath": "staticwebassets\\CategoryPhotos\\a1f85ee1-995b-4ff5-9c61-a9e290d5392e.png"
+    },
+    {
+      "Id": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\ab9a77ae-18bc-49da-aa42-8708d35cee9d.png",
+      "PackagePath": "staticwebassets\\CategoryPhotos\\ab9a77ae-18bc-49da-aa42-8708d35cee9d.png"
+    },
+    {
+      "Id": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\fa762c2d-6c7c-43c1-bb3e-64ffff378554.png",
+      "PackagePath": "staticwebassets\\CategoryPhotos\\fa762c2d-6c7c-43c1-bb3e-64ffff378554.png"
+    },
+    {
+      "Id": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\fd2b61fd-cc53-4bd9-8d1f-a00d7b35af8e.png",
+      "PackagePath": "staticwebassets\\CategoryPhotos\\fd2b61fd-cc53-4bd9-8d1f-a00d7b35af8e.png"
+    },
+    {
       "Id": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
