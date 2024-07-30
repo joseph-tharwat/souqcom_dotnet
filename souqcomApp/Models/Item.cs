@@ -13,9 +13,11 @@ public partial class Item
 
     public string? ItemPhoto { get; set; }
 
-    public int ItemPrice { get; set; }
+    public int? ItemPrice { get; set; }
 
     public int ItemCategoryId { get; set; }
 
     public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
+
+    public virtual Category ItemCategory { get; set; } = null!;
 }

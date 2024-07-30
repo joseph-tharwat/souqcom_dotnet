@@ -89,9 +89,7 @@ public partial class SouqcomContext : DbContext
         {
             entity.ToTable("items");
 
-            entity.Property(e => e.ItemId)
-                .ValueGeneratedNever()
-                .HasColumnName("item_id");
+            entity.Property(e => e.ItemId).HasColumnName("item_id");
             entity.Property(e => e.ItemCategoryId).HasColumnName("item_category_id");
             entity.Property(e => e.ItemDescription)
                 .HasMaxLength(255)
@@ -106,6 +104,10 @@ public partial class SouqcomContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("item_photo");
             entity.Property(e => e.ItemPrice).HasColumnName("item_price");
+
+            entity.HasOne(d => d.ItemCategory).WithMany(p => p.Items)
+                .HasForeignKey(d => d.ItemCategoryId)
+                .HasConstraintName("FK_CategoryId_items_Id");
         });
 
         modelBuilder.Entity<User>(entity =>

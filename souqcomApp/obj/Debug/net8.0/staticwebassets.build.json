@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GYo5eodrlD0Pf9ZPglCwuYGbAM/7ENF/gvHEeZGGsao=",
+  "Hash": "6DIsb6yRg4tVz0RDwgI6gZpn7ccnqzqzY3IKsFnOLvM=",
   "Source": "souqcomApp",
   "BasePath": "_content/souqcomApp",
   "Mode": "Default",
@@ -74,6 +74,25 @@
       "OriginalItemSpec": "wwwroot\\CategoryPhotos\\014bdb16-7ba7-467d-908e-2bee5f78ef7c.png"
     },
     {
+      "Identity": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\487b110a-f29b-473b-b777-4e7cc5225de4.png",
+      "SourceId": "souqcomApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\",
+      "BasePath": "_content/souqcomApp",
+      "RelativePath": "CategoryPhotos/487b110a-f29b-473b-b777-4e7cc5225de4.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\CategoryPhotos\\487b110a-f29b-473b-b777-4e7cc5225de4.png"
+    },
+    {
       "Identity": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\4f05f9d3-1bc7-4048-995f-dc49a744ea90.png",
       "SourceId": "souqcomApp",
       "SourceType": "Discovered",
@@ -129,25 +148,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\CategoryPhotos\\78b9f787-ec6d-4bd1-91f9-ab9b5cfc5b8e.png"
-    },
-    {
-      "Identity": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\a1f85ee1-995b-4ff5-9c61-a9e290d5392e.png",
-      "SourceId": "souqcomApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\",
-      "BasePath": "_content/souqcomApp",
-      "RelativePath": "CategoryPhotos/a1f85ee1-995b-4ff5-9c61-a9e290d5392e.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\CategoryPhotos\\a1f85ee1-995b-4ff5-9c61-a9e290d5392e.png"
     },
     {
       "Identity": "D:\\Programe_Project\\dotNet\\souqcom_dotnet\\souqcomApp\\wwwroot\\CategoryPhotos\\ab9a77ae-18bc-49da-aa42-8708d35cee9d.png",

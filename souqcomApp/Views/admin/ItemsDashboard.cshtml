@@ -1,0 +1,31 @@
+﻿@model List<souqcomApp.Models.Item>
+
+
+@{
+    ViewData["Title"] = "Item dashboard";
+}
+
+
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css">
+<body>
+    <div>
+        <table>   
+        
+        @foreach(var item in Model)
+        {
+            <tr>
+                <th>@item.ItemName</th>
+                <th>@item.ItemDescription</th>
+                <th> <img src="@Url.Content($"~/ItemPhotos/{item.ItemCategoryId}/{item.ItemPhoto}.png")"> </th>
+
+                <th>@Html.ActionLink("Delete", "DeleteItem", new{ItemId = item.ItemId})</th>
+                <th>@Html.ActionLink("Edit", "EditItem", new{ItemId = item.ItemId})</th>
+            </tr>
+        }
+        </table>
+    </div>
+    <div >@Html.ActionLink("Back to Category Dashboard", "CategoryDashboard")</div>
+</body>
+</html>

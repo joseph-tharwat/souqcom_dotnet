@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("souqcomApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0943e83f35a762376add9281084a13e627d38754")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a94b164dbf3e574f4b81dad82f6513f0512e425d")]
 [assembly: System.Reflection.AssemblyProductAttribute("souqcomApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("souqcomApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

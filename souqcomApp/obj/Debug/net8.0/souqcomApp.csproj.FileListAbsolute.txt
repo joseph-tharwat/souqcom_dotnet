@@ -280,9 +280,6 @@ D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\souqcomApp
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\souqcomApp.RazorAssemblyInfo.cache
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\souqcomApp.RazorAssemblyInfo.cs
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\souqcomApp.sourcelink.json
-D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\souqcomApp.dll
-D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\refint\souqcomApp.dll
-D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\souqcomApp.pdb
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\bin\Debug\net8.0\appsettings.Development.json
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\bin\Debug\net8.0\appsettings.json
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\bin\Debug\net8.0\souqcomApp.staticwebassets.runtime.json
@@ -406,5 +403,8 @@ D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\scopedcss\
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\scopedcss\bundle\souqcomApp.styles.css
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\scopedcss\projectbundle\souqcomApp.bundle.scp.css
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\souqcomApp.csproj.Up2Date
+D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\souqcomApp.dll
+D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\refint\souqcomApp.dll
+D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\souqcomApp.pdb
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\souqcomApp.genruntimeconfig.cache
 D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp\obj\Debug\net8.0\ref\souqcomApp.dll

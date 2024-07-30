@@ -1,20 +1,26 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 using souqcomApp.Models;
 using admin.login;
 using category.modification;
+using Items.modification;
+
 
 namespace souqcomApp.Controllers;
 
 public class AdminController : Controller
 {
     private static CategoryServices CategoryServ = null;
+    private static ItemsServices ItemServ = null;
     static AdminController()
     {
         if(CategoryServ == null)
         {
             CategoryServ = new CategoryServices();
+            ItemServ = new ItemsServices();
         }
     }
 
@@ -38,6 +44,39 @@ public class AdminController : Controller
         return View("Index",adminInfo);
     }
 
+    public ActionResult ItemsDashboard(int CatId)
+    {
+        return View("ItemsDashboard", new ItemsServices().GetList(CatId));
+    }
+
+    public ActionResult CreateItem()
+    {
+        var categoriesId = new List<SelectListItem>();
+    
+        foreach (var cat in CategoryServ.GetList())
+        {
+            categoriesId.Add(new SelectListItem{Value = $"{cat.CategoryId}", Text=cat.CategoryName});
+        }
+
+        ItemModel model = new ItemModel();
+        model.CategoriesId = categoriesId;
+        return View(model);
+    }
+
+    [HttpPost]
+    public ActionResult CreateItem(ItemModel ItemInfo)
+    {
+        bool status = ItemServ.Create(ItemInfo.Name, ItemInfo.Description, ItemInfo.PhotoFile, ItemInfo.Price, ItemInfo.CategoryId);
+        if(status == true)
+        {
+            //Go to the Dashboard page
+            return RedirectToAction("ItemsDashboard");
+        }
+        ViewBag.Msg = "Duplicate Category";
+        //Go to Create page
+        return View("CreateItem", ItemInfo);
+    }
+    
     public ActionResult CategoryDashboard()
     {
         return View("CategoryDashboard", new CategoryServices().GetList());
