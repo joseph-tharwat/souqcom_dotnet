@@ -1,4 +1,4 @@
-﻿@model List<souqcomApp.Models.Item>
+﻿@model Items.modification.ItemFilterView
 
 
 @{
@@ -10,10 +10,28 @@
 <html>
     <link rel="stylesheet" type="text/css" href="~/css/site.css">
 <body>
+    
+    @using(Html.BeginForm("ItemsDashboard", "Admin", FormMethod.Get))
+    {
+        <div class="form-group">
+            <label>Name</label>
+            @Html.TextBoxFor(t => t.ItemModelFilter.Name)
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+            @Html.DropDownListFor(t => t.ItemModelFilter.CategoryId, Model.ItemModelFilter.CategoriesId)
+        </div>
+        
+        <div class="form-group">
+            <button class="btn btn-primary">Search</button>
+        </div>
+    }
+
+
     <div>
         <table>   
         
-        @foreach(var item in Model)
+        @foreach(var item in Model.AllItems)
         {
             <tr>
                 <th>@item.ItemName</th>

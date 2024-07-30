@@ -23,7 +23,7 @@
 
                 <th>@Html.ActionLink("Delete", "DeleteCategory", new{CatName = cat.CategoryName})</th>
                 <th>@Html.ActionLink("Edit", "EditCategory", new{CatName = cat.CategoryName})</th>
-                <th>@Html.ActionLink("show Items", "ItemsDashboard", new{CatId = cat.CategoryId})</th>
+                <th>@Html.ActionLink("show Items", "AllItemsDashboard", new { CatId = cat.CategoryId })</th>
             </tr>
         }
         </table>

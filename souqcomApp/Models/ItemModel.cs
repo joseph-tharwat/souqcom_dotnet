@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+using souqcomApp.Models;
+
 namespace Items.modification
 {
     public class ItemModel
@@ -20,5 +22,12 @@ namespace Items.modification
         public int Price {get; set;}
 
         public List<SelectListItem> CategoriesId;
-    }   
+    }
+
+
+    public class ItemFilterView
+    {
+        public List<Item> AllItems { get; set; }
+        public ItemModel ItemModelFilter { get; set; }
+    }
 }

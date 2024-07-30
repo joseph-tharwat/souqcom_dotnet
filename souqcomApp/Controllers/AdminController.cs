@@ -17,7 +17,7 @@ public class AdminController : Controller
     private static ItemsServices ItemServ = null;
     static AdminController()
     {
-        if(CategoryServ == null)
+        if (CategoryServ == null)
         {
             CategoryServ = new CategoryServices();
             ItemServ = new ItemsServices();
@@ -27,39 +27,77 @@ public class AdminController : Controller
     //login page
     public IActionResult Index()
     {
-        AdminLogin temp =new AdminLogin();
+        AdminLogin temp = new AdminLogin();
         return View(temp);
     }
-    
+
     [HttpPost]
     public ActionResult Login(AdminLogin adminInfo)
     {
         adminServices adminServ = new adminServices();
         bool status = adminServ.Login(adminInfo.UserName, adminInfo.Password);
-        if(status == true)
+        if (status == true)
         {
             return View("Dashboard");
         }
         ViewBag.Msg = "error in username or password";
-        return View("Index",adminInfo);
+        return View("Index", adminInfo);
     }
 
-    public ActionResult ItemsDashboard(int CatId)
+    public ActionResult AllItemsDashboard(int CatId = -1)
     {
-        return View("ItemsDashboard", new ItemsServices().GetList(CatId));
+        ItemFilterView item = new ItemFilterView();
+        ItemModel model = new ItemModel();
+        model.CategoriesId = CreateDropDownList();
+        item.ItemModelFilter = model;
+        item.AllItems = new ItemsServices().GetList(CatId);
+        
+        return View("ItemsDashboard", item);
+    }
+
+    [HttpGet]
+    public ActionResult ItemsDashboard(ItemFilterView item)
+    {
+        // get all items
+        if (item.ItemModelFilter == null) 
+        {
+            //item.AllItems = new ItemsServices().GetList(-1);
+            //item.AllItems.AddRange(new ItemsServices().GetListByName(""));
+            //item.AllItems = item.AllItems.Distinct().ToList();
+            //item.AllItems = item.AllItems.GroupBy(t => t.ItemId).Select(group=>group.First()).ToList();
+            //handle all the above insed the method
+            item.AllItems = new ItemsServices().GetListByNameAndCategoryId("", -1);
+        }
+        else
+        {
+            //item.AllItems = new ItemsServices().GetList(item.ItemModelFilter.CategoryId);
+            //item.AllItems.AddRange(new ItemsServices().GetListByName(item.ItemModelFilter.Name));
+            //item.AllItems = item.AllItems.GroupBy(t => t.ItemId).Select(group => group.First()).ToList();
+            item.AllItems = new ItemsServices().GetListByNameAndCategoryId(item.ItemModelFilter.Name, item.ItemModelFilter.CategoryId);
+
+        }
+        item.ItemModelFilter.CategoriesId = CreateDropDownList();
+        return View("ItemsDashboard", item);
+    }
+
+
+    private List<SelectListItem> CreateDropDownList()
+    {
+        var categoriesId = new List<SelectListItem>();
+
+        categoriesId.Add(new SelectListItem { Value = $"{-1}", Text = "All" });
+        foreach (var cat in CategoryServ.GetList())
+        {
+            categoriesId.Add(new SelectListItem { Value = $"{cat.CategoryId}", Text = cat.CategoryName });
+        }
+
+        return categoriesId;
     }
 
     public ActionResult CreateItem()
     {
-        var categoriesId = new List<SelectListItem>();
-    
-        foreach (var cat in CategoryServ.GetList())
-        {
-            categoriesId.Add(new SelectListItem{Value = $"{cat.CategoryId}", Text=cat.CategoryName});
-        }
-
         ItemModel model = new ItemModel();
-        model.CategoriesId = categoriesId;
+        model.CategoriesId =  CreateDropDownList();
         return View(model);
     }
 
