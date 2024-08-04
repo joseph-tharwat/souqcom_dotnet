@@ -1,7 +1,50 @@
+using Items.modification;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using souqcomApp.Models;
+using System.Net;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<Itemp, TempInject>();//for testing injection only
+builder.Services.AddTransient<executionTimeFilter>();//Action filter
+builder.Services.AddResponseCaching();//for caching
+
+
+builder.Services.AddDbContext<IdentityContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+//builder.Services.AddIdentity<MyIdentityUser, IdentityRole>(options =>
+//{
+//    options.Password.RequireDigit = true;
+//    options.Password.RequiredLength = 6;
+//    options.Password.RequireNonAlphanumeric = false;
+//    options.Password.RequireUppercase = false;
+//    options.Password.RequireLowercase = false;
+//    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+//    options.Lockout.MaxFailedAccessAttempts = 5;
+//    options.User.RequireUniqueEmail = true;
+//})
+//.AddEntityFrameworkStores<IdentityContext>()
+//.AddDefaultTokenProviders();
+
+builder.Services.AddIdentity<MyIdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<IdentityContext>()
+            .AddDefaultTokenProviders();
+
+
+builder.Services.AddAuthentication().AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    });
 
 var app = builder.Build();
 
@@ -18,10 +61,17 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+
+app.UseResponseCaching();//for caching
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+  
 app.Run();
+

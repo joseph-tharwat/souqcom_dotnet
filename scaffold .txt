@@ -1,0 +1,2 @@
+connect to server:
+dotnet ef dbcontext scaffold "Server=JOSEPH-THARWAT;Database=souqcom;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --force

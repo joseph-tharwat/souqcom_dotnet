@@ -5,11 +5,26 @@
     ViewData["Title"] = "Item dashboard";
 }
 
+@inject Items.modification.Itemp temp;
+
 
 <!DOCTYPE html>
 <html>
     <link rel="stylesheet" type="text/css" href="~/css/site.css">
 <body>
+
+    <div>
+        @temp.GetString()
+    </div>
+    <div>
+        @temp.GetNum()
+        @temp.SetString("from header")
+    </div>
+    
+    
+    
+    
+    
     
     @using(Html.BeginForm("ItemsDashboard", "Admin", FormMethod.Get))
     {

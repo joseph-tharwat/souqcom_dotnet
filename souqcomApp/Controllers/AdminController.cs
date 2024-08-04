@@ -7,10 +7,14 @@ using souqcomApp.Models;
 using admin.login;
 using category.modification;
 using Items.modification;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.OutputCaching;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace souqcomApp.Controllers;
 
+[Authorize(Roles ="Admin")]
 public class AdminController : Controller
 {
     private static CategoryServices CategoryServ = null;
@@ -44,6 +48,7 @@ public class AdminController : Controller
         return View("Index", adminInfo);
     }
 
+    [ServiceFilter(typeof(executionTimeFilter))]
     public ActionResult AllItemsDashboard(int CatId = -1)
     {
         ItemFilterView item = new ItemFilterView();
@@ -55,6 +60,7 @@ public class AdminController : Controller
         return View("ItemsDashboard", item);
     }
 
+    [ResponseCache(Duration = 10)]
     [HttpGet]
     public ActionResult ItemsDashboard(ItemFilterView item)
     {
@@ -74,7 +80,6 @@ public class AdminController : Controller
             //item.AllItems.AddRange(new ItemsServices().GetListByName(item.ItemModelFilter.Name));
             //item.AllItems = item.AllItems.GroupBy(t => t.ItemId).Select(group => group.First()).ToList();
             item.AllItems = new ItemsServices().GetListByNameAndCategoryId(item.ItemModelFilter.Name, item.ItemModelFilter.CategoryId);
-
         }
         item.ItemModelFilter.CategoriesId = CreateDropDownList();
         return View("ItemsDashboard", item);
@@ -114,7 +119,7 @@ public class AdminController : Controller
         //Go to Create page
         return View("CreateItem", ItemInfo);
     }
-    
+
     public ActionResult CategoryDashboard()
     {
         return View("CategoryDashboard", new CategoryServices().GetList());

@@ -18,6 +18,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Programe_Project\dotNet\souqcom_dotnet\souqcomApp
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Programe_Project/dotNet/souqcom_dotnet/souqcomApp/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Programe_Project/dotNet/souqcom_dotnet/souqcomApp/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Programe_Project/dotNet/souqcom_dotnet/souqcomApp/Views/admin/CategoryDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcYWRtaW5cQ2F0ZWdvcnlEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,10 +40,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Programe_Project/dotNet/souqcom_dotnet/souqcomApp/Views/admin/EditCategory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcYWRtaW5cRWRpdENhdGVnb3J5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Programe_Project/dotNet/souqcom_dotnet/souqcomApp/Views/admin/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcYWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Programe_Project/dotNet/souqcom_dotnet/souqcomApp/Views/admin/ItemsDashboard.cshtml]

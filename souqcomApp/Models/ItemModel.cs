@@ -30,4 +30,40 @@ namespace Items.modification
         public List<Item> AllItems { get; set; }
         public ItemModel ItemModelFilter { get; set; }
     }
+
+
+    public interface Itemp
+    {
+        public string GetString();
+        public string SetString(string str1);
+        public int GetNum();
+    }
+
+     public class TempInject: Itemp
+    {
+        public int num { get; set; } = 0;
+        public string str { get; set; } = null;
+
+        public TempInject()
+        {
+            num++;
+            str = "test";
+        }
+        
+        public string GetString()
+        {
+            return str;
+        }
+        public string SetString(string str1)
+        {
+            num++;
+            str = str1;
+            return "";
+        }
+
+        public int GetNum()
+        {
+            return num;
+        }
+    }
 }

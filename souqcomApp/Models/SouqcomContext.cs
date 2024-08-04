@@ -17,6 +17,14 @@ public partial class SouqcomContext : DbContext
 
     public virtual DbSet<Admin> Admins { get; set; }
 
+    public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+
+    public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+
+    public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+
+    public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+
     public virtual DbSet<Cart> Carts { get; set; }
 
     public virtual DbSet<Category> Categories { get; set; }
@@ -44,6 +52,79 @@ public partial class SouqcomContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("admin_userName");
+        });
+
+        modelBuilder.Entity<AspNetRole>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_dbo.AspNetRoles");
+
+            entity.HasIndex(e => e.Name, "RoleNameIndex").IsUnique();
+
+            entity.Property(e => e.Id).HasMaxLength(128);
+            entity.Property(e => e.ConcurrencyStamp).HasMaxLength(256);
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.NormalizedName).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<AspNetUser>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_dbo.AspNetUsers");
+
+            entity.HasIndex(e => e.UserName, "UserNameIndex").IsUnique();
+
+            entity.Property(e => e.Id).HasMaxLength(128);
+            entity.Property(e => e.Email).HasMaxLength(256);
+            entity.Property(e => e.LockoutEndDateUtc).HasColumnType("datetime");
+            entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
+            entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
+            entity.Property(e => e.UserName).HasMaxLength(256);
+
+            entity.HasMany(d => d.Roles).WithMany(p => p.Users)
+                .UsingEntity<Dictionary<string, object>>(
+                    "AspNetUserRole",
+                    r => r.HasOne<AspNetRole>().WithMany()
+                        .HasForeignKey("RoleId")
+                        .HasConstraintName("FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId"),
+                    l => l.HasOne<AspNetUser>().WithMany()
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId"),
+                    j =>
+                    {
+                        j.HasKey("UserId", "RoleId").HasName("PK_dbo.AspNetUserRoles");
+                        j.ToTable("AspNetUserRoles");
+                        j.HasIndex(new[] { "RoleId" }, "IX_RoleId");
+                        j.HasIndex(new[] { "UserId" }, "IX_UserId");
+                        j.IndexerProperty<string>("UserId").HasMaxLength(128);
+                        j.IndexerProperty<string>("RoleId").HasMaxLength(128);
+                    });
+        });
+
+        modelBuilder.Entity<AspNetUserClaim>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_dbo.AspNetUserClaims");
+
+            entity.HasIndex(e => e.UserId, "IX_UserId");
+
+            entity.Property(e => e.UserId).HasMaxLength(128);
+
+            entity.HasOne(d => d.User).WithMany(p => p.AspNetUserClaims)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId");
+        });
+
+        modelBuilder.Entity<AspNetUserLogin>(entity =>
+        {
+            entity.HasKey(e => new { e.LoginProvider, e.ProviderKey, e.UserId }).HasName("PK_dbo.AspNetUserLogins");
+
+            entity.HasIndex(e => e.UserId, "IX_UserId");
+
+            entity.Property(e => e.LoginProvider).HasMaxLength(128);
+            entity.Property(e => e.ProviderKey).HasMaxLength(128);
+            entity.Property(e => e.UserId).HasMaxLength(128);
+
+            entity.HasOne(d => d.User).WithMany(p => p.AspNetUserLogins)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId");
         });
 
         modelBuilder.Entity<Cart>(entity =>
