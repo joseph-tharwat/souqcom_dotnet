@@ -1,0 +1,13 @@
+﻿
+@model  admin.login.AdminLogin
+
+<div class= "partial-view">
+    <div class="form-group">
+        <label>username</label>
+        @Html.TextBoxFor(admin => admin.UserName, new { @class = "form-control", Placeholder = @Model.UserName })
+    </div>
+    <div class="form-group">
+        <label>password</label>
+        @Html.PasswordFor(admin => admin.Password, new { @class = "form-control", Placeholder = @Model.Password })
+    </div>
+</div>

@@ -20,105 +20,49 @@ namespace souqcomApp.Controllers
 
         public AccountController(SignInManager<MyIdentityUser> sm, UserManager<MyIdentityUser> um)
         {
-            var dbOptions = new DbContextOptionsBuilder<IdentityContext>()
-                .UseSqlServer("Server=JOSEPH-THARWAT;Database=souqcom;Trusted_Connection=True;TrustServerCertificate=True;")
-                .Options;
-
-            var db = new IdentityContext(dbOptions);
-            var userStore = new UserStore<MyIdentityUser>(db);
-
             userManager = um; 
-
             signInManager  = sm; 
-
         }
-        //public AccountController()
-        //{
-        //    var dbOptions = new DbContextOptionsBuilder<IdentityContext>()
-        //        .UseSqlServer("Server=JOSEPH-THARWAT;Database=souqcom;Trusted_Connection=True;TrustServerCertificate=True;")
-        //        .Options;
 
-        //    var db = new IdentityContext(dbOptions);
-        //    var userStore = new UserStore<MyIdentityUser>(db);
-
-        //    userManager = new UserManager<MyIdentityUser>(
-        //        userStore,
-        //        new OptionsWrapper<IdentityOptions>(new IdentityOptions()),
-        //        new PasswordHasher<MyIdentityUser>(),
-        //        new List<IUserValidator<MyIdentityUser>>(),
-        //        new List<IPasswordValidator<MyIdentityUser>>(),
-        //        new UpperInvariantLookupNormalizer(),
-        //        new IdentityErrorDescriber(),
-        //        null,
-        //        null
-        //    );
-
-        //    var mockHttpContext = new DefaultHttpContext();
-        //    var httpContextAccessor = new HttpContextAccessor { HttpContext = mockHttpContext };
-        //    var userClaimsPrincipalFactory = new UserClaimsPrincipalFactory<MyIdentityUser>(userManager, new OptionsWrapper<IdentityOptions>(new IdentityOptions()));
-        //    var optionsAccessor = new OptionsWrapper<IdentityOptions>(new IdentityOptions());
-        //    var logger = new NullLogger<SignInManager<MyIdentityUser>>();
-
-        //    signInManager = new SignInManager<MyIdentityUser>(
-        //        userManager,
-        //        httpContextAccessor,
-        //        userClaimsPrincipalFactory,
-        //        optionsAccessor,
-        //        logger,
-        //        null, // IAuthenticationManager
-        //        null  // ISecurityStampValidator
-        //    );
-
-        //    //var mockHttpContext = new DefaultHttpContext();
-        //    //var httpContextAccessor = new HttpContextAccessor { HttpContext = mockHttpContext };
-
-        //    //signInManager = new SignInManager<MyIdentityUser>(
-        //    //    userManager,
-        //    //    httpContextAccessor,
-        //    //    new UserClaimsPrincipalFactory<MyIdentityUser>(userManager, new OptionsWrapper<IdentityOptions>(new IdentityOptions())),
-        //    //    new OptionsWrapper<IdentityOptions>(new IdentityOptions()),
-        //    //    new NullLogger<SignInManager<MyIdentityUser>>(), null, null
-        //    //);
-
-
-        //}
-
-
-        //public ActionResult Login()
-        //{
-        //    AdminLogin temp = new AdminLogin();
-        //    return View(temp);
-        //}
-
-        [HttpGet]
-        public ActionResult Login(string RUrl = "")
+        public ActionResult Login(string RUrl = "") //RUrl alwayse null, i do not know why.
         {
             string url = Request.Query["ReturnUrl"];
             AdminLogin temp = new AdminLogin() { RoutedUrl = url };
-            return View(temp);  
+            return View(temp);
         }
-
+        
         [HttpPost]
+        [CustomExceptionFilter] //route any unhandle exception to this filter(CustomExceptionFilter)
         public async Task<ActionResult> Login(AdminLogin userInfo)
         {
-            var user = await userManager.FindByNameAsync(userInfo.UserName);
-            if(user != null)
+            if (ModelState.IsValid == true)
             {
-                var signed = await signInManager.PasswordSignInAsync(user, userInfo.Password, false, false);
-                if(signed.Succeeded == true )
+                var user = await userManager.FindByNameAsync(userInfo.UserName);
+                if (user != null)
                 {
-                    var roles = await userManager.GetRolesAsync(user);
-                    string role = roles.FirstOrDefault();
+                    var signed = await signInManager.PasswordSignInAsync(user, userInfo.Password, false, false);
+                    if (signed.Succeeded == true)
+                    {
+                        var roles = await userManager.GetRolesAsync(user);
+                        string role = roles.FirstOrDefault();
 
-                    if (role == "Admin")
-                    {
-                        return Redirect(userInfo.RoutedUrl);
+                        if (role == "Admin")
+                        {
+                            if (userInfo.RoutedUrl != "/Admin")
+                            {
+                                return Redirect(userInfo.RoutedUrl);
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index", "Home");   
+                            }
+                        }
+                        else if (role == "Client")
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+
                     }
-                    else if (role == "Client")
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    
                 }
             }
 
@@ -164,7 +108,12 @@ namespace souqcomApp.Controllers
             return View(userInfo);
         }
 
+        public async Task<ActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
 
+            return RedirectToAction("Index", "Home");
+        }
     }
 
 }
